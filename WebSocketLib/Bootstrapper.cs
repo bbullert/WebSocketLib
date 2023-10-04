@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 using WebSocketLib.Middleware;
 using WebSocketLib.Services;
 
@@ -16,16 +15,6 @@ namespace WebSocketLib
             services.AddTransient<IGroupService, GroupService>();
             services.AddScoped<IPayloadService, PayloadService>();
 
-            var assembly = Assembly.GetEntryAssembly();
-            if (assembly == null) return services;
-
-            foreach (var type in assembly.ExportedTypes)
-            {
-                if (type.GetTypeInfo().BaseType == typeof(Hubs.WebSocketHub))
-                {
-                    services.AddTransient(type);
-                }
-            }
             return services;
         }
 

@@ -18,7 +18,7 @@ namespace WebSocketLib.Builders
 
         public void Join(string groupId)
         {
-            Join(_webSocketHub.Context.UserId, groupId);
+            Join(groupId, _webSocketHub.Context.UserId);
         }
 
         public void Join(string groupId, string userId)
@@ -28,7 +28,7 @@ namespace WebSocketLib.Builders
 
         public void Leave(string groupId)
         {
-            Leave(_webSocketHub.Context.UserId, groupId);
+            Leave(groupId, _webSocketHub.Context.UserId);
         }
 
         public void Leave(string groupId, string userId)
